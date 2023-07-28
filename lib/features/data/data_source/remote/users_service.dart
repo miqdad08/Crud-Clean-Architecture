@@ -14,7 +14,8 @@ class UsersService {
     final response = await httpClient.get(Uri.parse('$baseUrl/users'));
     if (response.statusCode == 200) {
       final dataUsers = jsonDecode(response.body)['data'];
-      List<UserModel> value = dataUsers.map<UserModel>((user) => UserModel.fromJson(user)).toList();
+      List<UserModel> value =
+          dataUsers.map<UserModel>((user) => UserModel.fromJson(user)).toList();
       final httpResponse = HttpResponse(value, response);
       return httpResponse;
     } else {
@@ -31,9 +32,7 @@ class UsersService {
     if (response.statusCode == 200) {
       return 'Success Remove User';
     } else {
-      throw Failure(
-          message:
-              jsonDecode(response.body)['message'] ?? 'Failed Remove User');
+      throw Failure(message: jsonDecode(response.body)['message'] ?? 'Failed Remove User');
     }
   }
 
@@ -52,7 +51,7 @@ class UsersService {
     }
   }
 
-  Future<String> editUser(UserModel user) async {
+  Future<String> updateUser(UserModel user) async {
     final response = await httpClient.post(
       Uri.parse(
         '$baseUrl/users/${user.id}',
