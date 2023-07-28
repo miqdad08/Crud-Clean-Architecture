@@ -26,6 +26,21 @@ class UsersService {
       rethrow;
     }
   }
+  Future<Either<Failure, String>> removeUser(int userId) async {
+    try {
+      final response =
+      await httpClient.delete(Uri.parse('$baseUrl/users/$userId'));
+
+      if (response.statusCode == 200) {
+        return const Right('Success Remove User');
+      } else {
+        return Left(Failure(message: jsonDecode(response.body)['message']));
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
 
 }
