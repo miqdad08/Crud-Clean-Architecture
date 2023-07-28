@@ -41,6 +41,24 @@ class UsersService {
     }
   }
 
+  Future<Either<Failure, String>> addUser(UserModel user) async {
+    try {
+      final response = await httpClient.post(
+          Uri.parse(
+            '$baseUrl/users',
+          ),
+          body: user.toJson(),
+      );
+
+      if (response.statusCode == 200) {
+        return const Right('Success Add User');
+      } else {
+        return Left(Failure(message: jsonDecode(response.body)['message']));
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 
 
 }
