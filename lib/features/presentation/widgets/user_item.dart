@@ -42,7 +42,7 @@ class UserItem extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '@${user!.name.toString()}',
+                '@${user!.email.toString()}',
                 style: greyTextStyle.copyWith(
                   fontSize: 12,
                 ),
