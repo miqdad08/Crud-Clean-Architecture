@@ -49,9 +49,26 @@ class UsersService {
           ),
           body: user.toJson(),
       );
-
       if (response.statusCode == 200) {
         return const Right('Success Add User');
+      } else {
+        return Left(Failure(message: jsonDecode(response.body)['message']));
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Either<Failure, String>> editUser(UserModel user) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse(
+          '$baseUrl/users/${user.id}',
+        ),
+        body: user.toJson(),
+      );
+      if (response.statusCode == 200) {
+        return const Right('Success Edit User');
       } else {
         return Left(Failure(message: jsonDecode(response.body)['message']));
       }
