@@ -1,25 +1,26 @@
 import 'dart:convert';
-
 import 'package:crud_clean_architecture/core/constant/constant.dart';
 import 'package:crud_clean_architecture/features/data/models/user.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/resources/failure.dart';
+import '../../../../core/resources/http_response.dart';
 
 class UsersService {
   final http.Client httpClient;
 
   UsersService(this.httpClient);
 
-  Future<List<UserModel>> getUsers() async {
+  Future<HttpResponse<List<UserModel>>> getUsers() async {
     final response = await httpClient.get(Uri.parse('$baseUrl/users'));
-
     if (response.statusCode == 200) {
       final dataUsers = jsonDecode(response.body)['data'];
-      return List<UserModel>.from(
-          dataUsers.map((user) => UserModel.fromJson(user)));
+      List<UserModel> value = dataUsers.map<UserModel>((user) => UserModel.fromJson(user)).toList();
+      final httpResponse = HttpResponse(value, response);
+      return httpResponse;
     } else {
       throw Failure(
-          message: jsonDecode(response.body)['message'] ?? 'Failed Get User');
+        message: jsonDecode(response.body)['message'] ?? 'Failed Get User',
+      );
     }
   }
 
