@@ -6,9 +6,9 @@ import '../../../config/theme/app_theme.dart';
 class UserItem extends StatelessWidget {
   final UserEntity? user;
   final void Function(UserEntity article)? onRemove;
-  final void Function(UserEntity article)? onTap;
+  final void Function(UserEntity article)? onUserTapped;
 
-  const UserItem({Key? key, this.user, this.onRemove, this.onTap})
+  const UserItem({Key? key, this.user, this.onRemove, this.onUserTapped})
       : super(key: key);
 
   @override
@@ -73,8 +73,8 @@ class UserItem extends StatelessWidget {
   }
 
   void _onTap() {
-    if (onTap != null) {
-      onTap!(user!);
+    if (onUserTapped != null) {
+      onUserTapped!(user!);
     }
   }
 
