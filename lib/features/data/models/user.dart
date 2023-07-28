@@ -23,6 +23,14 @@ class UserModel {
     );
   }
 
+  Map<String, dynamic> toJson(){
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+    };
+  }
+
   factory UserModel.fromEntity(UserEntity entity){
     return UserModel(
       id: entity.id,
