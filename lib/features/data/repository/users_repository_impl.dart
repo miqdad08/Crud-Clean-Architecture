@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:crud_clean_architecture/core/resources/failure.dart';
 import 'package:crud_clean_architecture/features/data/data_source/remote/users_service.dart';
+import 'package:crud_clean_architecture/features/data/models/user.dart';
 import 'package:crud_clean_architecture/features/domain/entities/user.dart';
 import 'package:dartz/dartz.dart';
 
@@ -13,9 +14,17 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._usersService);
 
   @override
-  Future<Either<Failure, String>> addUser() {
-    // TODO: implement addUser
-    throw UnimplementedError();
+  Future<Either<Failure, String>> addUser(UserEntity userEntity) async{
+    try {
+      final user = await _usersService.addUser(UserModel.fromEntity(userEntity));
+      return Right(user);
+    } catch (e) {
+      return Left(
+        Failure(
+          message: 'Failed Update User',
+        ),
+      );
+    }
   }
 
   @override
@@ -43,14 +52,30 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeUser(UserEntity user) {
-    // TODO: implement removeUser
-    throw UnimplementedError();
+  Future<Either<Failure, String>> removeUser(UserEntity userEntity) async {
+    try {
+      final user = await _usersService.removeUser(userEntity.id!);
+      return Right(user);
+    } catch (e) {
+      return Left(
+        Failure(
+          message: 'Failed Remove User',
+        ),
+      );
+    }
   }
 
   @override
-  Future<Either<Failure, String>> updateUser(UserEntity user) {
-    // TODO: implement updateUser
-    throw UnimplementedError();
+  Future<Either<Failure, String>> updateUser(UserEntity userEntity) async{
+    try {
+      final user = await _usersService.updateUser(UserModel.fromEntity(userEntity));
+      return Right(user);
+    } catch (e) {
+      return Left(
+        Failure(
+          message: 'Failed Update User',
+        ),
+      );
+    }
   }
 }
