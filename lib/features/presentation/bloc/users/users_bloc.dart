@@ -35,16 +35,15 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     final users = await _getUsersUseCase();
     users.fold(
       (failure) => emit(UsersFailed(failure)),
-      (users) => emit(UsersSuccess(users)),
+      (users)  => emit(UsersSuccess(users)),
     );
   }
 
   void onRemoveUser(RemoveUser event, Emitter<UsersState> emit) async {
-    await _removeUserUseCase(params: event.user);
-    final users = await _getUsersUseCase();
-    users.fold(
+    final removedUser = await _removeUserUseCase(params: event.user);
+    removedUser.fold(
       (failure) => emit(UsersFailed(failure)),
-      (users) => emit(UsersSuccess(users)),
+      (removedUser) => emit(UserUpdated(removedUser)),
     );
   }
 
