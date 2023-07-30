@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _updateUserDialog(BuildContext context, UserEntity user){
+  void _updateUserDialog(BuildContext context, UserEntity user) {
     showDialog(
       context: context,
       builder: (context) {
@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _addUserDialog(BuildContext context, bool isEdit){
+  void _addUserDialog(BuildContext context, bool isEdit) {
     _clearTextController();
     showDialog(
       context: context,
