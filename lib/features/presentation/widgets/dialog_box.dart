@@ -26,9 +26,9 @@ class DialogBox extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              controller: emailController,
+              controller: nameController,
               decoration: const InputDecoration(
-                hintText: 'Input Email',
+                hintText: 'Input Name',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -36,9 +36,9 @@ class DialogBox extends StatelessWidget {
               height: 10,
             ),
             TextField(
-              controller: nameController,
+              controller: emailController,
               decoration: const InputDecoration(
-                hintText: 'Input Name',
+                hintText: 'Input Email',
                 border: OutlineInputBorder(),
               ),
             ),
