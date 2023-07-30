@@ -24,15 +24,6 @@ class UserItemWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.grey.shade300,
-            child: const Icon(
-              Icons.person,
-              color: Colors.grey,
-            ),
-          ),
-          const Spacer(flex: 1,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,6 +36,7 @@ class UserItemWidget extends StatelessWidget {
               ),
               Text(
                 user!.name.toString(),
+                overflow: TextOverflow.ellipsis,
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -56,12 +48,12 @@ class UserItemWidget extends StatelessWidget {
               Text(
                 user!.email.toString(),
                 style: greyTextStyle.copyWith(
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
             ],
           ),
-          const Spacer(flex: 2,),
+          const Spacer(),
           Row(
             children: [
               _buildEditableArea(),
