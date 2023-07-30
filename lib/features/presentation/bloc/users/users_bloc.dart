@@ -56,11 +56,10 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   }
 
   void onUpdateUser(UpdateUser event, Emitter<UsersState> emit) async {
-    await _updateUserUseCase(params: event.user);
-    final users = await _getUsersUseCase();
-    users.fold(
+    final updateUser = await _updateUserUseCase(params: event.user);
+    updateUser.fold(
       (failure) => emit(UsersFailed(failure)),
-      (users) => emit(UsersSuccess(users)),
+      (message) => emit(UserUpdated(message)),
     );
   }
 }
