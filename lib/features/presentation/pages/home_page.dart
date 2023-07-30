@@ -58,13 +58,14 @@ class HomePage extends StatelessWidget {
               itemCount: state.users!.length,
               itemBuilder: (context, index) {
                 return UserItemWidget(
-                    user: state.users![index],
-                    onRemove: (user) => _onRemoveUser(context, user),
-                    onUpdate: (user) {
-                      _nameController.text = user.name!;
-                      _emailController.text = user.email!;
-                      addUserDialog(context, true);
-                    });
+                  user: state.users![index],
+                  onRemove: (user) => _onRemoveUser(context, user),
+                  onUpdate: (user) {
+                    _nameController.text = user.name!;
+                    _emailController.text = user.email!;
+                    addUserDialog(context, true);
+                  },
+                );
               },
             ),
           );
