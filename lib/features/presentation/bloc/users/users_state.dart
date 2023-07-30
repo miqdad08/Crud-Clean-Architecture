@@ -4,12 +4,12 @@ part of 'users_bloc.dart';
 abstract class UsersState extends Equatable {
   final List<UserEntity>? users;
   final Failure? error;
-  final UserEntity? user;
+  final String? message;
 
   const UsersState({
     this.users,
     this.error,
-    this.user,
+    this.message,
   });
 
   @override
@@ -31,5 +31,5 @@ class UsersFailed extends UsersState {
 }
 
 class UserUpdated extends UsersState {
-  const UserUpdated(UserEntity user) : super(user: user);
+  const UserUpdated(String message) : super(message: message);
 }
