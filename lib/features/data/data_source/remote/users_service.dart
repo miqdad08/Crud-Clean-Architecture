@@ -11,7 +11,11 @@ class UsersService {
   UsersService(this.httpClient);
 
   Future<HttpResponse<List<UserModel>>> getUsers() async {
-    final response = await httpClient.get(Uri.parse('$baseUrl/users'));
+    final response = await httpClient.get(
+      Uri.parse(
+        '$baseUrl/users',
+      ),
+    );
     if (response.statusCode == 200) {
       final dataUsers = jsonDecode(response.body)['data'];
       List<UserModel> value =
@@ -25,41 +29,49 @@ class UsersService {
     }
   }
 
-  Future<String> removeUser(int userId) async {
-    final response =
-        await httpClient.delete(Uri.parse('$baseUrl/users/$userId'));
-
+  Future<HttpResponse<String>> removeUser(int userId) async {
+    final response = await httpClient.delete(
+      Uri.parse(
+        '$baseUrl/users/$userId',
+      ),
+    );
     if (response.statusCode == 200) {
-      return 'Success Remove User';
+      String value = 'Success Add User';
+      final httpResponse = HttpResponse(value, response);
+      return httpResponse;
     } else {
-      throw Failure(message: jsonDecode(response.body)['message'] ?? 'Failed Remove User');
+      throw Failure(
+          message:
+              jsonDecode(response.body)['message'] ?? 'Failed Remove User');
     }
   }
 
-  Future<String> addUser(UserModel user) async {
+  Future<HttpResponse<String>> addUser(UserModel user) async {
     final response = await httpClient.post(
-      Uri.parse(
-        '$baseUrl/users',
-      ),
+      Uri.parse('$baseUrl/users'),
       body: user.toJson(),
     );
     if (response.statusCode == 200) {
-      return 'Success Add User';
+      String value = 'Success Add User';
+      final httpResponse = HttpResponse(value, response);
+      return httpResponse;
     } else {
-      throw Failure(
+      return throw Failure(
           message: jsonDecode(response.body)['message'] ?? 'Failed Add User');
     }
   }
 
-  Future<String> updateUser(UserModel user) async {
+  Future<HttpResponse<String>> updateUser(UserModel user) async {
     final response = await httpClient.post(
       Uri.parse(
         '$baseUrl/users/${user.id}',
       ),
       body: user.toJson(),
     );
-    if (response.statusCode == 200) {
-      return 'Success Edit User';
+    if (response.statusCode == 200){
+       String value = 'Success Edit User';
+       final httpResponse = HttpResponse(value, response);
+       return httpResponse;
     } else {
       throw Failure(
           message: jsonDecode(response.body)['message'] ?? 'Failed Edit User');
