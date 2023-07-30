@@ -5,8 +5,8 @@ import '../../../config/theme/app_theme.dart';
 
 class UserItem extends StatelessWidget {
   final UserEntity? user;
-  final void Function(UserEntity article)? onRemove;
-  final void Function(UserEntity article)? onUserTapped;
+  final void Function(UserEntity user)? onRemove;
+  final void Function(UserEntity user)? onUserTapped;
 
   const UserItem({Key? key, this.user, this.onRemove, this.onUserTapped})
       : super(key: key);
