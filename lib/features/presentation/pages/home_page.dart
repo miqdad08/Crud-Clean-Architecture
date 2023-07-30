@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                   onUpdate: (user) {
                     _nameController.text = user.name!;
                     _emailController.text = user.email!;
-                    addUserDialog(context, true);
+                    _updateUserDialog(context, user);
                   },
                 );
               },
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       backgroundColor: purpleColor,
-      onPressed: () => addUserDialog(
+      onPressed: () => _addUserDialog(
         context,
         false,
       ),
@@ -89,14 +89,29 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void addUserDialog(BuildContext context, bool isEdit) {
+  void _updateUserDialog(BuildContext context, UserEntity user){
     showDialog(
       context: context,
       builder: (context) {
         return DialogBox(
           emailController: _emailController,
           nameController: _nameController,
-          onSave: () => isEdit ? _onUpdateUser(context) : _onAddUser(context),
+          onSave: () => _onUpdateUser(context, user),
+          onCancel: () => _onBack(context),
+        );
+      },
+    );
+  }
+
+  void _addUserDialog(BuildContext context, bool isEdit){
+    _clearTextController();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          emailController: _emailController,
+          nameController: _nameController,
+          onSave: () => _onAddUser(context),
           onCancel: () => _onBack(context),
         );
       },
@@ -113,12 +128,13 @@ class HomePage extends StatelessWidget {
     _onBack(context);
   }
 
-  void _onUpdateUser(BuildContext context) {
-    final user = UserEntity(
+  void _onUpdateUser(BuildContext context, UserEntity user) {
+    final userItem = UserEntity(
       name: _nameController.text,
       email: _emailController.text,
+      id: user.id,
     );
-    BlocProvider.of<UsersBloc>(context).add(UpdateUser(user));
+    BlocProvider.of<UsersBloc>(context).add(UpdateUser(userItem));
     _clearTextController();
     _onBack(context);
   }
