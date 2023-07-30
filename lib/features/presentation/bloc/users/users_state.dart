@@ -4,8 +4,13 @@ part of 'users_bloc.dart';
 abstract class UsersState extends Equatable {
   final List<UserEntity>? users;
   final Failure? error;
+  final UserEntity? user;
 
-  const UsersState({this.users, this.error});
+  const UsersState({
+    this.users,
+    this.error,
+    this.user,
+  });
 
   @override
   List<Object?> get props => [users!, error!];
@@ -23,4 +28,8 @@ class UsersSuccess extends UsersState {
 
 class UsersFailed extends UsersState {
   const UsersFailed(Failure error) : super(error: error);
+}
+
+class UserUpdated extends UsersState {
+  const UserUpdated(Failure error) : super(error: error);
 }
