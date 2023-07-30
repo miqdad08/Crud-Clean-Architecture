@@ -27,16 +27,24 @@ class UserItem extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 22,
+              radius: 30,
               backgroundColor: Colors.grey.shade300,
               child: const Icon(
                 Icons.person,
                 color: Colors.grey,
               ),
             ),
+            const Spacer(flex: 1,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  user!.id.toString(),
+                  style: blackTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
                 Text(
                   user!.name.toString(),
                   style: blackTextStyle.copyWith(
@@ -53,9 +61,10 @@ class UserItem extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                _buildRemovableArea(),
               ],
             ),
+            const Spacer(flex: 2,),
+            _buildRemovableArea(),
           ],
         ),
       ),
