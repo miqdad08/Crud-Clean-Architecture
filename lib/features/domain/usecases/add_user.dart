@@ -12,7 +12,7 @@ class AddUserUseCase implements UseCase<Either<Failure, String>, UserEntity>{
 
   @override
   Future<Either<Failure, String>> call({UserEntity? params}) {
-    return _userRepository.updateUser(params!);
+    return _userRepository.addUser(params!);
   }
 
 }
