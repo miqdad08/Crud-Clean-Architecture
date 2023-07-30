@@ -58,9 +58,13 @@ class HomePage extends StatelessWidget {
               itemCount: state.users!.length,
               itemBuilder: (context, index) {
                 return UserItemWidget(
-                  user: state.users![index],
-                  onRemove: (user) => _onRemoveUser(context, user),
-                );
+                    user: state.users![index],
+                    onRemove: (user) => _onRemoveUser(context, user),
+                    onUpdate: (user) {
+                      _nameController.text = user.name!;
+                      _emailController.text = user.email!;
+                      addUserDialog(context, true);
+                    });
               },
             ),
           );
@@ -91,8 +95,7 @@ class HomePage extends StatelessWidget {
         return DialogBox(
           emailController: _emailController,
           nameController: _nameController,
-          onSave: () =>
-              isEdit ? _onUpdateUser(context) : _onAddUser(context),
+          onSave: () => isEdit ? _onUpdateUser(context) : _onAddUser(context),
           onCancel: () => _onBack(context),
         );
       },
@@ -102,17 +105,26 @@ class HomePage extends StatelessWidget {
   void _onAddUser(BuildContext context) {
     final user = UserEntity(
       name: _nameController.text,
-      email: _emailController.text,);
+      email: _emailController.text,
+    );
     BlocProvider.of<UsersBloc>(context).add(AddUser(user));
+    _clearTextController();
     _onBack(context);
   }
 
   void _onUpdateUser(BuildContext context) {
     final user = UserEntity(
       name: _nameController.text,
-      email: _emailController.text,);
+      email: _emailController.text,
+    );
     BlocProvider.of<UsersBloc>(context).add(UpdateUser(user));
+    _clearTextController();
     _onBack(context);
+  }
+
+  void _clearTextController() {
+    _nameController.clear();
+    _emailController.clear();
   }
 
   void _onBack(BuildContext context) {
