@@ -10,6 +10,10 @@ class UsersService {
 
   UsersService(this.httpClient);
 
+  var headers = {
+    'Content-Type': 'application/json',
+  };
+
   Future<HttpResponse<List<UserModel>>> getUsers() async {
     final response = await httpClient.get(
       Uri.parse(
@@ -49,7 +53,8 @@ class UsersService {
   Future<HttpResponse<String>> addUser(UserModel user) async {
     final response = await httpClient.post(
       Uri.parse('$baseUrl/users'),
-      body: user.toJson(),
+      body: jsonEncode(user.toJson()),
+      headers: headers,
     );
     if (response.statusCode == 200) {
       String value = 'Success Add User';
@@ -66,12 +71,13 @@ class UsersService {
       Uri.parse(
         '$baseUrl/users/${user.id}',
       ),
-      body: user.toJson(),
+      body: jsonEncode(user.toJson()),
+      headers: headers,
     );
-    if (response.statusCode == 200){
-       String value = 'Success Edit User';
-       final httpResponse = HttpResponse(value, response);
-       return httpResponse;
+    if (response.statusCode == 200) {
+      String value = 'Success Edit User';
+      final httpResponse = HttpResponse(value, response);
+      return httpResponse;
     } else {
       throw Failure(
           message: jsonDecode(response.body)['message'] ?? 'Failed Edit User');
