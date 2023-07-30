@@ -40,6 +40,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   }
 
   void onRemoveUser(RemoveUser event, Emitter<UsersState> emit) async {
+    emit(const UsersLoading());
     final removedUser = await _removeUserUseCase(params: event.user);
     removedUser.fold(
       (failure) => emit(UsersFailed(failure)),
@@ -48,6 +49,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   }
 
   void onAddUser(AddUser event, Emitter<UsersState> emit) async {
+    emit(const UsersLoading());
     final addUser =  await _addUserUseCase(params: event.user);
     addUser.fold(
       (failure) => emit(UsersFailed(failure)),
@@ -56,6 +58,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   }
 
   void onUpdateUser(UpdateUser event, Emitter<UsersState> emit) async {
+    emit(const UsersLoading());
     final updateUser = await _updateUserUseCase(params: event.user);
     updateUser.fold(
       (failure) => emit(UsersFailed(failure)),
