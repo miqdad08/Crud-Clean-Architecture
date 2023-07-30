@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: state.users!.length,
               itemBuilder: (context, index) {
-                return UserItem(
+                return UserItemWidget(
                   user: state.users![index],
                   onRemove: (user) => _onRemoveUser(context, user),
                 );
@@ -79,16 +79,12 @@ class HomePage extends StatelessWidget {
       onPressed: () => addUserDialog(
         context,
         false,
-        UserEntity(
-          email: _emailController.text,
-          name: _nameController.text,
-        ),
       ),
       child: const Icon(Icons.add),
     );
   }
 
-  void addUserDialog(BuildContext context, bool isEdit, UserEntity user) {
+  void addUserDialog(BuildContext context, bool isEdit) {
     showDialog(
       context: context,
       builder: (context) {
@@ -96,22 +92,30 @@ class HomePage extends StatelessWidget {
           emailController: _emailController,
           nameController: _nameController,
           onSave: () =>
-              isEdit ? _onUpdateUser(context, user) : _onAddUser(context, user),
-          onCancel: () => _onCancel(context),
+              isEdit ? _onUpdateUser(context) : _onAddUser(context),
+          onCancel: () => _onBack(context),
         );
       },
     );
   }
 
-  void _onAddUser(BuildContext context, UserEntity user) {
+  void _onAddUser(BuildContext context) {
+    final user = UserEntity(
+      name: _nameController.text,
+      email: _emailController.text,);
     BlocProvider.of<UsersBloc>(context).add(AddUser(user));
+    _onBack(context);
   }
 
-  void _onUpdateUser(BuildContext context, UserEntity user) {
+  void _onUpdateUser(BuildContext context) {
+    final user = UserEntity(
+      name: _nameController.text,
+      email: _emailController.text,);
     BlocProvider.of<UsersBloc>(context).add(UpdateUser(user));
+    _onBack(context);
   }
 
-  void _onCancel(BuildContext context) {
+  void _onBack(BuildContext context) {
     Navigator.pop(context);
   }
 
