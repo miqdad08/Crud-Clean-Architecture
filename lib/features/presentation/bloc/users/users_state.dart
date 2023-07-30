@@ -31,5 +31,5 @@ class UsersFailed extends UsersState {
 }
 
 class UserUpdated extends UsersState {
-  const UserUpdated(Failure error) : super(error: error);
+  const UserUpdated(UserEntity user) : super(user: user);
 }
