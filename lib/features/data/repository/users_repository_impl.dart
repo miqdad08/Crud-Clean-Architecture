@@ -14,14 +14,23 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._usersService);
 
   @override
-  Future<Either<Failure, String>> addUser(UserEntity userEntity) async{
+  Future<Either<Failure, String>> addUser(UserEntity userEntity) async {
     try {
-      final user = await _usersService.addUser(UserModel.fromEntity(userEntity));
-      return Right(user);
+      final httpResponse =
+      await _usersService.addUser(UserModel.fromEntity(userEntity));
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return Right(httpResponse.data);
+      } else {
+        return Left(
+          Failure(
+            message: httpResponse.response.body,
+          ),
+        );
+      }
     } catch (e) {
       return Left(
         Failure(
-          message: 'Failed Add User',
+          message: e.toString(),
         ),
       );
     }
@@ -54,22 +63,38 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, String>> removeUser(UserEntity userEntity) async {
     try {
-      final user = await _usersService.removeUser(userEntity.id!);
-      return Right(user);
+      final httpResponse = await _usersService.removeUser(userEntity.id!);
+      if(httpResponse.response.statusCode == HttpStatus.ok){
+        return Right(httpResponse.data);
+      }else{
+        return Left(
+          Failure(
+            message: httpResponse.response.body,
+          ),
+        );
+      }
     } catch (e) {
       return Left(
         Failure(
-          message: 'Failed Remove User',
+          message: e.toString(),
         ),
       );
     }
   }
 
   @override
-  Future<Either<Failure, String>> updateUser(UserEntity userEntity) async{
+  Future<Either<Failure, String>> updateUser(UserEntity userEntity) async {
     try {
-      final user = await _usersService.updateUser(UserModel.fromEntity(userEntity));
-      return Right(user);
+      final httpResponse = await _usersService.updateUser(UserModel.fromEntity(userEntity));
+      if(httpResponse.response.statusCode == HttpStatus.ok){
+        return Right(httpResponse.data);
+      }else{
+        return Left(
+          Failure(
+            message: httpResponse.response.body,
+          ),
+        );
+      }
     } catch (e) {
       return Left(
         Failure(
