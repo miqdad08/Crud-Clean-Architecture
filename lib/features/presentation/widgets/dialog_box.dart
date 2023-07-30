@@ -19,8 +19,9 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       content: SizedBox(
-        height: 140,
+        height: 190,
         child: Column(
           children: [
             TextField(
