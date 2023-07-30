@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_theme.dart';
 
-class UserItem extends StatelessWidget {
+class UserItemWidget extends StatelessWidget {
   final UserEntity? user;
   final void Function(UserEntity user)? onRemove;
   final void Function(UserEntity user)? onUpdate;
 
-  const UserItem({Key? key, this.user, this.onRemove, this.onUpdate})
+  const UserItemWidget({Key? key, this.user, this.onRemove, this.onUpdate})
       : super(key: key);
 
   @override

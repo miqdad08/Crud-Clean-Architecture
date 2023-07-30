@@ -1,3 +1,4 @@
+import 'package:crud_clean_architecture/features/presentation/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 
 class DialogBox extends StatelessWidget {
@@ -47,16 +48,16 @@ class DialogBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MaterialButton(
+                MyButtonWidget(
                   onPressed: onSave,
-                  child: Text(isEdit ? 'Save' :'Add'),
+                  textButton: isEdit ? 'Save' :'Add',
                 ),
                 const SizedBox(
                   width: 10,
                 ),
-                MaterialButton(
+                MyButtonWidget(
                   onPressed: onCancel,
-                  child: const Text('Cancel'),
+                  textButton: 'Cancel',
                 )
               ],
             )
