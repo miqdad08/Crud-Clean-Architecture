@@ -21,7 +21,7 @@ class UserRepositoryImpl implements UserRepository {
     } catch (e) {
       return Left(
         Failure(
-          message: 'Failed Update User',
+          message: 'Failed Add User',
         ),
       );
     }
