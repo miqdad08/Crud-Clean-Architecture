@@ -51,6 +51,11 @@ class HomePage extends StatelessWidget {
           BlocProvider.of<UsersBloc>(context).add(const GetUsers());
         }
         if (state is UsersSuccess) {
+          if(state.users!.isEmpty) {
+            return const Center(
+              child: Text('No data'),
+            );
+          }
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: ListView.builder(
