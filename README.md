@@ -22,12 +22,12 @@ this project is an exercise project for learning and deepest knowledge of Clean 
 
 ### Built With
 
-* [News ApI]([https://newsapi.org/](https://capekngoding.com/{your-number-phone}/api))
+* [CapekNgoding API](https://capekngoding.com/{your-number-phone}/api)
 * [State Management (BLOC)](https://pub.dev/packages/flutter_bloc)
 * [Request Api (HTTP)](https://pub.dev/packages/http)
 * [Service Locator (GET IT)](https://pub.dev/packages/get_it)
 * [Comparing Dart Objects (EQUATABLE)](https://pub.dev/packages/equatable)
-* [Error Handle(dartz)](https://pub.dev/packages/dartz)
+* [Error Handle(DARTZ)](https://pub.dev/packages/dartz)
 
 
 <!-- GETTING STARTED -->
