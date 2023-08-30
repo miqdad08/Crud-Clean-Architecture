@@ -1,5 +1,5 @@
 import 'package:crud_clean_architecture/features/domain/entities/user.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../../core/resources/failure.dart';
 

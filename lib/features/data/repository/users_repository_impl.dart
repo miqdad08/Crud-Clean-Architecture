@@ -4,7 +4,7 @@ import 'package:crud_clean_architecture/core/resources/failure.dart';
 import 'package:crud_clean_architecture/features/data/data_source/remote/users_service.dart';
 import 'package:crud_clean_architecture/features/data/models/user.dart';
 import 'package:crud_clean_architecture/features/domain/entities/user.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../domain/repository/user_repository.dart';
 

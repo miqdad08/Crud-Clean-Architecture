@@ -2,7 +2,7 @@ import 'package:crud_clean_architecture/core/resources/failure.dart';
 import 'package:crud_clean_architecture/core/usecase/usecase.dart';
 import 'package:crud_clean_architecture/features/domain/entities/user.dart';
 import 'package:crud_clean_architecture/features/domain/repository/user_repository.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 class RemoveUserUseCase implements UseCase<Either<Failure, String>, UserEntity>{
 
