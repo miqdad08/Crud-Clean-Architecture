@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "620532200747",
+    "project_id": "crud-exercise-6e1a8",
+    "storage_bucket": "crud-exercise-6e1a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620532200747:android:3dc431af298fbce3c3416e",
+        "android_client_info": {
+          "package_name": "com.miqdad.crud_clean_architecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620532200747-jdh923ib3qhcidskvu2629v29fpdanoj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.miqdad.crud_clean_architecture",
+            "certificate_hash": "389d0d3322a49fa78e4450f027c98fdbb894748b"
+          }
+        },
+        {
+          "client_id": "620532200747-l3qabr3pnv5fhpim4cnfd4lrnme5pmes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNzrIr9Lkg7c4eRvnLwtYMl2DQS-DI1Es"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620532200747-l3qabr3pnv5fhpim4cnfd4lrnme5pmes.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
