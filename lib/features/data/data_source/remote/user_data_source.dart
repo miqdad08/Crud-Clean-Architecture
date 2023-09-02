@@ -1,5 +1,5 @@
-import '../../../core/resources/http_response.dart';
-import '../models/user.dart';
+import '../../../../core/resources/http_response.dart';
+import '../../models/user.dart';
 
 abstract class UserDataSource {
   Future<HttpResponse<List<UserModel>>> getUsers();

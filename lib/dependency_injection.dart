@@ -19,7 +19,7 @@ Future<void> initializeDependencies() async {
   locator.registerSingleton<http.Client>(http.Client());
 
   //Service
-  locator.registerSingleton<UsersService>(UsersService(locator()));
+  locator.registerSingleton<UserService>(UserService(locator()));
 
   //Repository
   locator.registerSingleton<UserRepository>(UserRepositoryImpl(locator()));

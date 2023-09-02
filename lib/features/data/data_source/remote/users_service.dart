@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:crud_clean_architecture/core/constant/constant.dart';
-import 'package:crud_clean_architecture/features/data/data_source/user_data_source.dart';
+import 'package:crud_clean_architecture/features/data/data_source/remote/user_data_source.dart';
 import 'package:crud_clean_architecture/features/data/models/user.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/resources/failure.dart';
 import '../../../../core/resources/http_response.dart';
 
-class UsersService implements UserDataSource {
+class UserService implements UserDataSource {
   final http.Client httpClient;
 
-  UsersService(this.httpClient);
+  UserService(this.httpClient);
 
   var headers = {
     'Content-Type': 'application/json',

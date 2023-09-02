@@ -9,7 +9,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../domain/repository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final UsersService _usersService;
+  final UserService _usersService;
 
   UserRepositoryImpl(this._usersService);
 
