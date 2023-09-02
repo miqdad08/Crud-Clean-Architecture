@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:crud_clean_architecture/core/constant/constant.dart';
+import 'package:crud_clean_architecture/features/data/data_source/user_data_source.dart';
 import 'package:crud_clean_architecture/features/data/models/user.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/resources/failure.dart';
 import '../../../../core/resources/http_response.dart';
 
-class UsersService {
+class UsersService implements UserDataSource {
   final http.Client httpClient;
 
   UsersService(this.httpClient);
@@ -14,6 +15,7 @@ class UsersService {
     'Content-Type': 'application/json',
   };
 
+  @override
   Future<HttpResponse<List<UserModel>>> getUsers() async {
     final response = await httpClient.get(
       Uri.parse(
@@ -33,6 +35,7 @@ class UsersService {
     }
   }
 
+  @override
   Future<HttpResponse<String>> removeUser(int userId) async {
     final response = await httpClient.delete(
       Uri.parse(
@@ -50,6 +53,7 @@ class UsersService {
     }
   }
 
+  @override
   Future<HttpResponse<String>> addUser(UserModel user) async {
     final response = await httpClient.post(
       Uri.parse('$baseUrl/users'),
@@ -66,6 +70,7 @@ class UsersService {
     }
   }
 
+  @override
   Future<HttpResponse<String>> updateUser(UserModel user) async {
     final response = await httpClient.post(
       Uri.parse(
