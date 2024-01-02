@@ -7,7 +7,7 @@ import '../../../../core/resources/failure.dart';
 import '../../../../core/resources/http_response.dart';
 
 class UserService implements UserDataSource {
-  final http.Client httpClient;
+  final http.Client  httpClient;
 
   UserService(this.httpClient);
 

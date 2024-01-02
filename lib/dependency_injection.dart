@@ -1,6 +1,7 @@
 
+import 'package:crud_clean_architecture/features/data/data_source/firebase/firebase_user_service.dart';
 import 'package:crud_clean_architecture/features/data/data_source/remote/users_service.dart';
-import 'package:crud_clean_architecture/features/data/repository/users_repository_impl.dart';
+import 'package:crud_clean_architecture/features/data/repository/firebase_users_repository_impl.dart';
 import 'package:crud_clean_architecture/features/domain/usecases/add_user.dart';
 import 'package:crud_clean_architecture/features/domain/usecases/get_users.dart';
 import 'package:crud_clean_architecture/features/domain/usecases/remove_user.dart';
@@ -20,9 +21,11 @@ Future<void> initializeDependencies() async {
 
   //Service
   locator.registerSingleton<UserService>(UserService(locator()));
+  locator.registerSingleton<FirebaseUserService>(FirebaseUserService());
 
   //Repository
-  locator.registerSingleton<UserRepository>(UserRepositoryImpl(locator()));
+  // locator.registerSingleton<UserRepository>(UserRepositoryImpl(locator()));
+  locator.registerSingleton<UserRepository>(FirebaseUserRepositoryImpl(locator()));
 
   //UseCase
   locator.registerSingleton<GetUsersUseCase>(GetUsersUseCase(locator()));
